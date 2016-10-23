@@ -1,27 +1,102 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Twittler Beta v1.0 - by Dunstan Zheng</title>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
   </head>
   <body>
+  <header class="primary-header container group">
+<section class="container">
+  <h1 class="logo">
+  <a href="index.html">TWITTLER</a>
+  </h1>
+  </section>
+  <h3 class="tagline">v1.0 &mdash; Dunstan Zheng</h3>
+<nav class="nav primary-nav">
+  <ul>
+    <li><a href="index.html">Home</a></li><!--
+    --><li><a href="#">Logout</a></li>
+  </ul>
+</nav>
+</header>
+  <section class ="hero"><button class="btn btn-alt" id="update">Update Tweets</button></section><section class ="line"></section><!--
+  --><container class="hero container">
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
+        var $container = $('container');
+        $container.html('');
         var index = streams.home.length - 1;
         while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+           var tweet = streams.home[index];
+           var $tweet = $('<div class="tweet">' + tweet.created_at + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
+           $container.append($tweet);
           index -= 1;
         }
+
+      // #update linked to a button with method triggered by click, once clicked, will append elements to container element.
+      $("#update").click(function() {
+        var $container = $('container');
+        $container.html('');
+        var index = streams.home.length - 1;
+          while(index >= 0){
+            var tweet = streams.home[index];
+            var $tweet = $('<div class="tweet">' + tweet.created_at + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
+            $container.append($tweet);
+            index -= 1;
+        }
+        $(".name").on('click', function() {
+          var $container = $('container');
+          $container.html('');
+          // slice the text at 1, therefore receive their name without @ sign.
+          var name = $(this).text().slice(1);
+          var index = streams.home.length - 1;
+            while(index >= 0){
+              var tweet = streams.home[index];
+              // if statement to compare the text of class name element with their name in streams obj.
+              if(tweet.user === name) {
+                var $tweet = $('<div class="tweet">' + tweet.created_at + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
+                 $container.append($tweet);
+              }
+              index -= 1;
+            }
+        });
+      });
+
+      $(".name").on('click', function() {
+        var $container = $('container');
+        $container.html('');
+        var name = $(this).text().slice(1);
+        var index = streams.home.length - 1;
+          while(index >= 0){
+            var tweet = streams.home[index];
+            if(tweet.user === name) {
+              var $tweet = $('<div class="tweet">' + tweet.created_at + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
+               $container.append($tweet);
+            }
+            index -= 1;
+          }
+      });
+
 
       });
 
     </script>
+    </container>
+     <!-- Footer -->
+    <footer class="primary-footer container group">
+  <small>TWITTLER v1.0</small>
+<nav class="nav">
+  <ul>
+    <li><a href="index.html">HOME</a></li><!--
+    --><li><a href="speakers.html">LOGOUT</a></li>
+  </ul>
+</nav>
+
+</footer>
   </body>
 </html>
+
