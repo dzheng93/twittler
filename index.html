@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Twittler Beta v1.0 - by Dunstan Zheng</title>
+    <title>Twittler Beta v1.1 - by Dunstan Zheng</title>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <link rel="stylesheet" href="main.css">
@@ -32,7 +32,7 @@
         var index = streams.home.length - 1;
         while(index >= 0){
            var tweet = streams.home[index];
-           var $tweet = $('<div class="tweet">' + tweet.created_at + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
+           var $tweet = $('<div class="tweet">' + '<small>' + tweet.created_at + '</small>' + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
            $container.append($tweet);
           index -= 1;
         }
@@ -44,7 +44,7 @@
         var index = streams.home.length - 1;
           while(index >= 0){
             var tweet = streams.home[index];
-            var $tweet = $('<div class="tweet">' + tweet.created_at + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
+            var $tweet = $('<div class="tweet">' + '<small>' + tweet.created_at + '</small>' + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
             $container.append($tweet);
             index -= 1;
         }
@@ -58,7 +58,7 @@
               var tweet = streams.home[index];
               // if statement to compare the text of class name element with their name in streams obj.
               if(tweet.user === name) {
-                var $tweet = $('<div class="tweet">' + tweet.created_at + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
+                var $tweet = $('<div class="tweet">' + '<small>' + tweet.created_at + '</small>' + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
                  $container.append($tweet);
               }
               index -= 1;
@@ -74,7 +74,7 @@
           while(index >= 0){
             var tweet = streams.home[index];
             if(tweet.user === name) {
-              var $tweet = $('<div class="tweet">' + tweet.created_at + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
+              var $tweet = $('<div class="tweet">' + '<small>' + tweet.created_at + '</small>' + ' <button class="name">' + '@' + tweet.user + '</button> : ' + tweet.message + '</div>');
                $container.append($tweet);
             }
             index -= 1;
